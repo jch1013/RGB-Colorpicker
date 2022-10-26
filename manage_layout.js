@@ -1,17 +1,22 @@
-const reds = document.querySelector('.vary-red');
+const reds = document.querySelector('#vary-red');
+const greens = document.querySelector('#vary-green');
+const blues = document.querySelector('#vary-blue');
 
-function makeGrid() {
+function makeGrid(gridName) {
     let gridWidth = "";
     for (let i = 0; i < 11; i++) {
         const div = document.createElement('div');
         div.style.border = 'solid';
-        reds.appendChild(div);
+        div.classList.add('color');
+        gridName.appendChild(div);
     }
     for (let i = 0; i < 11; i++) {
         gridWidth += 'auto ';
     }
-    reds.style.gridTemplateColumns=gridWidth;
+    gridName.style.gridTemplateColumns=gridWidth;
 }
 
-makeGrid();
+makeGrid(reds);
+makeGrid(greens);
+makeGrid(blues);
 

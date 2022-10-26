@@ -1,0 +1,12 @@
+
+.grid {
+    display: flex;
+    width: 100%;
+    padding-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+.color {
+    aspect-ratio: 1 / 1;
+    min-width: 100px;
+}
