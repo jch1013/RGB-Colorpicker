@@ -20,9 +20,20 @@ function processColor(rgbString) {
 function rgbIncrement(rgbValue) {
     let increment = 3;
     let values = [];
+    // iterate through 5 times to account for boxes on sides but not in middle (10 total, 2 per iteration added)
     for (let i = 1; i < 6; i++) {
-        values.push(rgbValue + i * increment);
-        values.push(rgbValue - i * increment);
+        let high = rgbValue + i * increment;
+        let low = rgbValue - i * increment;
+
+        if (high > 255) {
+            high = 255;
+        }
+        if (low < 0) {
+            low = 0;
+        }
+
+        values.push(low);
+        values.push(high);
     }
     values.push(rgbValue);
     values.sort(function(a,b) {
@@ -33,4 +44,4 @@ function rgbIncrement(rgbValue) {
 }
 
 
-rgbIncrement(100);
+rgbIncrement(10);
