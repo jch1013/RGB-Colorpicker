@@ -1,10 +1,9 @@
 const redColors = document.querySelectorAll('#vary-red .color');
-console.log(redColors.length);
+redColors[0].style.backgroundColor = 'blue';
 let bg;
 
 for (let i = 0; i < redColors.length; i++) {
     bg = window.getComputedStyle(redColors[i], null).getPropertyValue("background-color");
-    console.log(bg);
 }
 
 
@@ -12,7 +11,6 @@ for (let i = 0; i < redColors.length; i++) {
 function processColor(rgbString) {
     let colors = rgbString.split(/[\s,()]+/);
     let rgbArray = [colors[1], colors[2], colors[3]];
-    console.log(rgbArray);
     return rgbArray;
 }
 
@@ -25,6 +23,7 @@ function rgbIncrement(rgbValue) {
         let high = rgbValue + i * increment;
         let low = rgbValue - i * increment;
 
+        // Make sure rgb values are in range
         if (high > 255) {
             high = 255;
         }
@@ -39,9 +38,16 @@ function rgbIncrement(rgbValue) {
     values.sort(function(a,b) {
         return a - b;
     });
-    console.log(values);
     return values;
 }
 
+function changeColors(rgbString) {
+    let colors = processColor(rgbString);
+    let newReds = rgbIncrement(colors[0]);
+    let newGreens = rgbIncrement(colors[1]);
+    let newBlues = rgbIncrement(colors[2]);
+    console.log(newGreens);
+}
 
-rgbIncrement(10);
+
+changeColors(bg);
