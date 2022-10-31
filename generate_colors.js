@@ -43,13 +43,15 @@ function changeColors(rgbString) {
     let newGreens = rgbIncrement(colors[1]);
     let newBlues = rgbIncrement(colors[2]);
 
-    // update red colors
+    // Update red colors
     for (let i = 0; i < newReds.length; i++) {
         redColors[i].style.backgroundColor = "rgb(" + newReds[i] + "," + colors[1] + "," + colors[2] + ")";
     }
+    // Update green colors
     for (let i = 0; i < newGreens.length; i++) {
         greenColors[i].style.backgroundColor = "rgb(" + colors[0] + "," + newGreens[i] + "," + colors[2] + ")";
     }
+    // Update blue colors
     for (let i = 0; i < newReds.length; i++) {
         blueColors[i].style.backgroundColor = "rgb(" + colors[0] + "," + colors[1] + "," + newBlues[i] + ")";
     }
