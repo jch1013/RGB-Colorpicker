@@ -1,7 +1,9 @@
 const redColors = document.querySelectorAll('#vary-red .color');
-// redColors[0].style.backgroundColor = 'blue';
-let bg;
+const greenColors = document.querySelectorAll('#vary-green .color');
+const blueColors = document.querySelectorAll('#vary-blue .color');
 
+
+let bg;
 for (let i = 0; i < redColors.length; i++) {
     bg = window.getComputedStyle(redColors[i], null).getPropertyValue("background-color");
 }
@@ -10,13 +12,13 @@ for (let i = 0; i < redColors.length; i++) {
 // This function takes the string value of the rgb  color and reduces it to an array the three rgb values
 function processColor(rgbString) {
     let colors = rgbString.split(/[\s,()]+/);
-    let rgbArray = [colors[1], colors[2], colors[3]];
+    let rgbArray = [parseInt(colors[1]), parseInt(colors[2]), parseInt(colors[3])];
     return rgbArray;
 }
 
 // This function takes one int value as a parameter and varies it to generate different colors
 function rgbIncrement(rgbValue) {
-    let increment = 3;
+    let increment = 10;
     let values = [];
     // iterate through 5 times to account for boxes on sides but not in middle (10 total, 2 per iteration added)
     for (let i = 1; i < 6; i++) {
@@ -43,16 +45,23 @@ function rgbIncrement(rgbValue) {
 
 function changeColors(rgbString) {
     let colors = processColor(rgbString);
+    // console.log(colors)
     let newReds = rgbIncrement(colors[0]);
     let newGreens = rgbIncrement(colors[1]);
     let newBlues = rgbIncrement(colors[2]);
+    console.log(newReds)
 
     // update red colors
-    for (let i = 0; i < colors.length; i++) {
-        let newShade = "rgb(" + newReds[i].toString() + colors[1].toString() + colors[2].toString() + ")";
-        console.log(newShade);
+    for (let i = 0; i < newReds.length; i++) {
+        redColors[i].style.backgroundColor = "rgb(" + newReds[i] + "," + colors[1] + "," + colors[2] + ")";
     }
-    console.log(newGreens);
+    for (let i = 0; i < newGreens.length; i++) {
+        greenColors[i].style.backgroundColor = "rgb(" + colors[0] + "," + newGreens[i] + "," + colors[2] + ")";
+    }
+    for (let i = 0; i < newReds.length; i++) {
+        blueColors[i].style.backgroundColor = "rgb(" + colors[0] + "," + colors[1] + "," + newBlues[i] + ")";
+    }
+    // console.log(newGreens);
 }
 
 
