@@ -1,12 +1,5 @@
-const redColors = document.querySelectorAll('#vary-red .color');
-const greenColors = document.querySelectorAll('#vary-green .color');
-const blueColors = document.querySelectorAll('#vary-blue .color');
 
 
-let bg;
-for (let i = 0; i < redColors.length; i++) {
-    bg = window.getComputedStyle(redColors[i], null).getPropertyValue("background-color");
-}
 
 
 // This function takes the string value of the rgb  color and reduces it to an array the three rgb values
@@ -49,7 +42,6 @@ function changeColors(rgbString) {
     let newReds = rgbIncrement(colors[0]);
     let newGreens = rgbIncrement(colors[1]);
     let newBlues = rgbIncrement(colors[2]);
-    console.log(newReds)
 
     // update red colors
     for (let i = 0; i < newReds.length; i++) {
@@ -64,5 +56,30 @@ function changeColors(rgbString) {
     // console.log(newGreens);
 }
 
+// Putting it all together and calling functions
+const redColors = document.querySelectorAll('#vary-red .color');
+const greenColors = document.querySelectorAll('#vary-green .color');
+const blueColors = document.querySelectorAll('#vary-blue .color');
+const starterColors = document.querySelectorAll('.starter-color');
+const generatedColors = document.querySelectorAll('.color');
+console.log(generatedColors.length)
 
-changeColors(bg);
+// Adding event listeners for starter colors
+for (let i = 0; i < starterColors.length; i++) {
+    starterColors[i].addEventListener('click', () => {
+        let starterBackground = window.getComputedStyle(starterColors[i], null).getPropertyValue("background-color");
+        changeColors(starterBackground);
+
+    })
+}
+
+// Adding event listeners for generated colors
+for (let i = 0; i < generatedColors.length; i++) {
+    generatedColors[i].addEventListener('click', () => {
+        let generatedBackground = window.getComputedStyle(generatedColors[i], null).getPropertyValue("background-color");
+        console.log(generatedBackground);
+        changeColors(generatedBackground);
+
+    })
+}
+
