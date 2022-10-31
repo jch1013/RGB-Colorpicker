@@ -1,5 +1,5 @@
 const redColors = document.querySelectorAll('#vary-red .color');
-redColors[0].style.backgroundColor = 'blue';
+// redColors[0].style.backgroundColor = 'blue';
 let bg;
 
 for (let i = 0; i < redColors.length; i++) {
@@ -46,6 +46,12 @@ function changeColors(rgbString) {
     let newReds = rgbIncrement(colors[0]);
     let newGreens = rgbIncrement(colors[1]);
     let newBlues = rgbIncrement(colors[2]);
+
+    // update red colors
+    for (let i = 0; i < colors.length; i++) {
+        let newShade = "rgb(" + newReds[i].toString() + colors[1].toString() + colors[2].toString() + ")";
+        console.log(newShade);
+    }
     console.log(newGreens);
 }
 
