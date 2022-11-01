@@ -93,5 +93,14 @@ for (let i = 0; i < generatedColors.length; i++) {
         changeColors(generatedBackground);
 
     })
+
+    generatedColors[i].addEventListener('contextmenu', (event) => {
+        event.preventDefault();
+        if (event.button == 2) {
+            let generatedBackground = window.getComputedStyle(generatedColors[i], null).getPropertyValue("background-color");
+            console.log(generatedBackground);
+            navigator.clipboard.writeText(generatedBackground);
+        }
+      })
 }
 
