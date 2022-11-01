@@ -1,7 +1,4 @@
 
-
-
-
 // This function takes the string value of the rgb  color and reduces it to an array the three rgb values
 function processColor(rgbString) {
     let colors = rgbString.split(/[\s,()]+/);
@@ -36,12 +33,19 @@ function rgbIncrement(rgbValue) {
     return values;
 }
 
+
+
 function changeColors(rgbString) {
     let colors = processColor(rgbString);
     // console.log(colors)
     let newReds = rgbIncrement(colors[0]);
     let newGreens = rgbIncrement(colors[1]);
     let newBlues = rgbIncrement(colors[2]);
+
+    const shades = document.querySelectorAll('#vary-shade .color');
+    const redColors = document.querySelectorAll('#vary-red .color');
+    const greenColors = document.querySelectorAll('#vary-green .color');
+    const blueColors = document.querySelectorAll('#vary-blue .color');
 
     // Update red colors
     for (let i = 0; i < newReds.length; i++) {
@@ -55,16 +59,22 @@ function changeColors(rgbString) {
     for (let i = 0; i < newReds.length; i++) {
         blueColors[i].style.backgroundColor = "rgb(" + colors[0] + "," + colors[1] + "," + newBlues[i] + ")";
     }
-    // console.log(newGreens);
+    for (let i = 0; i < shades.length; i++) {
+        shades[i].style.backgroundColor = "rgb(" + newReds[i] + "," + newGreens[i] + "," + newBlues[i] + ")";
+    }
+
 }
 
+
+
+
+
+
 // Putting it all together and calling functions
-const redColors = document.querySelectorAll('#vary-red .color');
-const greenColors = document.querySelectorAll('#vary-green .color');
-const blueColors = document.querySelectorAll('#vary-blue .color');
+// Unsure of best practices here, should this code be written within a function? come back to research
+
 const starterColors = document.querySelectorAll('.starter-color');
 const generatedColors = document.querySelectorAll('.color');
-console.log(generatedColors.length)
 
 // Adding event listeners for starter colors
 for (let i = 0; i < starterColors.length; i++) {
